@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "您的名字",
+  "classifications": [ "Web", "MVC", "E-Commerce" ],
+  "identity": "ShoppingWebsite.Template",
+  "name": "Shopping Website MVC Template",
+  "shortName": "shoppingmvc",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "ShoppingWebsite",
+  "preferNameDirectory": true
+}
