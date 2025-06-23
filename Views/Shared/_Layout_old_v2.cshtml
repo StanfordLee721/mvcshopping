@@ -9,6 +9,54 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/mvcshopping.styles.css" asp-append-version="true" />
+
+    <!-- 自定義CSS優化 -->
+    @* <style>
+        .sidebar .list-group-item {
+            border: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .list-group-item:hover {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ffc107;
+        }
+
+        .sidebar .list-group-item.fw-bold {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .sidebar .list-group-item.fw-bold:hover {
+            background-color: #ffeaa7;
+        }
+
+        .sidebar .collapse .list-group-item {
+            font-size: 0.9em;
+            padding-left: 2rem;
+        }
+
+        /* 頂部導航優化 */
+        .navbar-nav .dropdown-menu {
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+
+        .dropdown-item:hover {
+            background-color: #495057;
+        }
+    </style> *@
 </head>
 
 <body>
@@ -24,19 +72,14 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">🏠 首頁</a></li>
 
-                        <!-- 商品管理選單（智能定位子選單） -->
+                        <!-- 商品管理選單（新增子選單） -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="productMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">📦 商品管理</a>
-                            <ul class="dropdown-menu dropdown-menu-dark shadow smart-dropdown"
-                                aria-labelledby="productMenu">
-                                <!-- 智能子選單 - 自動調整展開方向 -->
-                                <li class="dropdown-submenu smart-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">
-                                        <span class="submenu-text">商品資料</span>
-                                        <i class="submenu-arrow">›</i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark submenu-content">
+                            <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="productMenu">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">商品資料</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" asp-controller="Product"
                                                 asp-action="Index">商品列表</a></li>
                                         <li><a class="dropdown-item" asp-controller="Product"
@@ -45,12 +88,9 @@
                                                 asp-action="CategoryIndex">商品分類</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown-submenu smart-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">
-                                        <span class="submenu-text">庫存管理</span>
-                                        <i class="submenu-arrow">›</i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark submenu-content">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">庫存管理</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" asp-controller="Product"
                                                 asp-action="Index">庫存查詢</a></li>
                                         <li><a class="dropdown-item" asp-controller="Product"
@@ -66,18 +106,14 @@
                             </ul>
                         </li>
 
-                        <!-- 系統功能選單（智能定位子選單） -->
+                        <!-- 系統功能選單（優化） -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="systemMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">⚙️ 系統功能</a>
-                            <ul class="dropdown-menu dropdown-menu-dark shadow smart-dropdown"
-                                aria-labelledby="systemMenu">
-                                <li class="dropdown-submenu smart-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">
-                                        <span class="submenu-text">購物車功能</span>
-                                        <i class="submenu-arrow">›</i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark submenu-content">
+                            <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="systemMenu">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">購物車功能</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" asp-controller="Product"
                                                 asp-action="Index">購物車管理</a></li>
                                         <li><a class="dropdown-item" asp-controller="Product"
@@ -96,18 +132,14 @@
                             </ul>
                         </li>
 
-                        <!-- 報表與統計選單（智能定位子選單） -->
+                        <!-- 報表與統計選單（優化） -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="reportMenu" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">📊 報表統計</a>
-                            <ul class="dropdown-menu dropdown-menu-dark shadow smart-dropdown"
-                                aria-labelledby="reportMenu">
-                                <li class="dropdown-submenu smart-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">
-                                        <span class="submenu-text">商品報表</span>
-                                        <i class="submenu-arrow">›</i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark submenu-content">
+                            <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="reportMenu">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">商品報表</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" asp-controller="Product"
                                                 asp-action="Index">商品資料列印</a></li>
                                         <li><a class="dropdown-item" asp-controller="Product"
@@ -116,12 +148,9 @@
                                                 asp-action="Index">庫存報表</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown-submenu smart-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">
-                                        <span class="submenu-text">客戶報表</span>
-                                        <i class="submenu-arrow">›</i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark submenu-content">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">客戶報表</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" asp-controller="Home"
                                                 asp-action="Security">客戶資料列印</a></li>
                                         <li><a class="dropdown-item" asp-controller="Home"
@@ -195,8 +224,7 @@
                                 圖片上傳與存儲</a>
                             <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">📋
                                 商品規格管理</a>
-                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">📊
-                                庫存管理</a>
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">📊 庫存管理</a>
                         </div>
                     </div>
 
@@ -273,209 +301,50 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <!-- 智能下拉選單功能 -->
+    <!-- 子選單功能支援 -->
     <script>
         $(document).ready(function () {
-            /**
-             * 智能子選單定位系統
-             * 功能說明：
-             * 1. 自動偵測子選單是否超出螢幕範圍
-             * 2. 根據螢幕空間智能選擇展開方向（右/左/下）
-             * 3. 提供流暢的動畫效果和使用者體驗
-             */
-
-            // 初始化所有智能子選單
-            initSmartSubmenus();
-
-            // 當視窗大小改變時重新計算定位
-            $(window).resize(function () {
-                initSmartSubmenus();
+            // 支援多層下拉選單
+            $('.dropdown-submenu a.dropdown-toggle').on("click", function (e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
             });
+            // 點擊其他地方關閉子選單
+            $(document).click(function () {
+                $('.dropdown-submenu ul').hide();
+            });
+            document.addEventListener('DOMContentLoaded', function () {
+                const dropdownSubmenus = document.querySelectorAll('.dropdown-submenu');
 
-            /**
-             * 智能子選單初始化函數
-             * 為每個子選單添加智能定位功能
-             */
-            function initSmartSubmenus() {
-                $('.smart-submenu').each(function () {
-                    const $submenu = $(this);
-                    const $submenuContent = $submenu.find('.submenu-content');
+                dropdownSubmenus.forEach(function (submenu) {
+                    submenu.addEventListener('mouseenter', function () {
+                        const submenuMenu = submenu.querySelector('.dropdown-menu');
 
-                    // 滑鼠進入時計算最佳位置
-                    $submenu.on('mouseenter', function () {
-                        calculateOptimalPosition($submenu, $submenuContent);
-                    });
+                        if (submenuMenu) {
+                            // 重置位置
+                            submenuMenu.style.left = '';
+                            submenuMenu.style.right = '';
 
-                    // 滑鼠離開時隱藏子選單
-                    $submenu.on('mouseleave', function () {
-                        $submenuContent.removeClass('show-left show-right show-down').hide();
-                        updateArrowDirection($submenu, 'right'); // 重置箭頭方向
+                            const rect = submenuMenu.getBoundingClientRect();
+
+                            // 如果子選單超出右邊界，則向左展開
+                            if (rect.right > window.innerWidth) {
+                                submenuMenu.style.left = 'auto';
+                                submenuMenu.style.right = '100%';
+                            }
+
+                            // 如果子選單超出下邊界，則向上展開
+                            if (rect.bottom > window.innerHeight) {
+                                submenuMenu.style.top = 'auto';
+                                submenuMenu.style.bottom = '0';
+                            } else {
+                                submenuMenu.style.top = '';
+                                submenuMenu.style.bottom = '';
+                            }
+                        }
                     });
                 });
-            }
-
-            // 計算子選單的最佳顯示位置
-            // $submenu: 子選單元素
-            // $submenuContent: 子選單內容元素
-            function calculateOptimalPosition($submenu, $submenuContent) {
-                // 重置所有定位類別
-                $submenuContent.removeClass('show-left show-right show-down').hide();
-
-                // 取得相關尺寸資訊
-                const submenuRect = $submenu[0].getBoundingClientRect();
-                const viewportWidth = $(window).width();
-                const viewportHeight = $(window).height();
-
-                // 暫時顯示以取得實際尺寸
-                $submenuContent.css('visibility', 'hidden').show();
-                const submenuWidth = $submenuContent.outerWidth();
-                const submenuHeight = $submenuContent.outerHeight();
-                $submenuContent.css('visibility', 'visible').hide();
-
-                // 計算各方向的可用空間
-                const spaceRight = viewportWidth - submenuRect.right;
-                const spaceLeft = submenuRect.left;
-                const spaceDown = viewportHeight - submenuRect.bottom;
-
-                // 檢查是否為頂部選單的報表統計選單
-                const isReportMenu = $submenu.closest('#reportMenu').length > 0 ||
-                    $submenu.closest('[aria-labelledby="reportMenu"]').length > 0;
-
-                // 智能選擇最佳展開方向
-                let bestDirection = decideBestDirection(spaceRight, spaceLeft, spaceDown, submenuWidth, submenuHeight, isReportMenu);
-
-                // 應用選擇的方向
-                applyDirection($submenuContent, $submenu, bestDirection);
-
-                // 確保選單不會超出螢幕範圍
-                ensureWithinViewport($submenuContent, viewportWidth, viewportHeight);
-
-                // 顯示子選單
-                $submenuContent.fadeIn(200);
-            }
-
-            // 確保選單在視窗範圍內
-            // $menu: 選單元素
-            // viewportWidth: 視窗寬度
-            // viewportHeight: 視窗高度
-            function ensureWithinViewport($menu, viewportWidth, viewportHeight) {
-                setTimeout(() => {
-                    // 取得選單位置和尺寸
-                    const menuRect = $menu[0].getBoundingClientRect();
-
-                    // 檢查右側是否超出
-                    if (menuRect.right > viewportWidth) {
-                        const overflowRight = menuRect.right - viewportWidth;
-                        $menu.css('left', parseInt($menu.css('left')) - overflowRight - 10 + 'px');
-                    }
-
-                    // 檢查底部是否超出
-                    if (menuRect.bottom > viewportHeight) {
-                        const overflowBottom = menuRect.bottom - viewportHeight;
-                        $menu.css('top', parseInt($menu.css('top')) - overflowBottom - 10 + 'px');
-                    }
-                }, 0);
-            }
-
-
-            // 決定最佳的展開方向
-            // spaceRight: 右側可用空間
-            // spaceLeft: 左側可用空間
-            // spaceDown: 下方可用空間
-            // menuWidth: 選單寬度
-            // menuHeight: 選單高度
-            // isReportMenu: 是否為報表統計選單
-            // 回傳: 最佳方向('right', 'left', 'down')
-
-            function decideBestDirection(spaceRight, spaceLeft, spaceDown, menuWidth, menuHeight, isReportMenu) {
-                // 報表統計選單特殊處理 - 優先向左展開
-                if (isReportMenu) {
-                    // 如果左側空間足夠，優先向左展開
-                    if (spaceLeft >= menuWidth * 0.7) { // 只需要70%的空間，剩下的會由ensureWithinViewport處理
-                        return 'left';
-                    }
-                    // 如果下方空間足夠，其次向下展開
-                    else if (spaceDown >= menuHeight + 10) {
-                        return 'down';
-                    }
-                    // 如果右側空間足夠，最後向右展開
-                    else if (spaceRight >= menuWidth * 0.7) {
-                        return 'right';
-                    }
-                } else {
-                    // 一般選單的優先順序：右 -> 左 -> 下
-                    if (spaceRight >= menuWidth + 10) { // 10px 緩衝空間
-                        return 'right';
-                    } else if (spaceLeft >= menuWidth + 10) {
-                        return 'left';
-                    } else if (spaceDown >= menuHeight + 10) {
-                        return 'down';
-                    }
-                }
-
-                // 如果都不夠空間，選擇空間最大的方向
-                if (spaceRight >= spaceLeft && spaceRight >= spaceDown) {
-                    return 'right';
-                } else if (spaceLeft >= spaceDown) {
-                    return 'left';
-                } else {
-                    return 'down';
-                }
-            }
-
-            // 應用選定的展開方向
-            // $content: 子選單內容
-            // $submenu: 子選單元素
-            // direction: 展開方向
-            function applyDirection($content, $submenu, direction) {
-                switch (direction) {
-                    case 'left':
-                        $content.addClass('show-left');
-                        updateArrowDirection($submenu, 'left');
-                        break;
-                    case 'down':
-                        $content.addClass('show-down');
-                        updateArrowDirection($submenu, 'down');
-                        break;
-                    default: // 'right'
-                        $content.addClass('show-right');
-                        updateArrowDirection($submenu, 'right');
-                        break;
-                }
-            }
-
-            // 更新箭頭方向指示
-            // $submenu: 子選單元素
-            // direction: 箭頭方向
-            function updateArrowDirection($submenu, direction) {
-                const $arrow = $submenu.find('.submenu-arrow');
-                const arrows = {
-                    'right': '›',
-                    'left': '‹',
-                    'down': '⌄'
-                };
-                $arrow.text(arrows[direction] || '›');
-            }
-
-            /**
-             * 點擊其他區域關閉所有子選單
-             * 提供更好的使用者體驗
-             */
-            $(document).on('click', function (e) {
-                if (!$(e.target).closest('.smart-submenu').length) {
-                    $('.submenu-content').removeClass('show-left show-right show-down').hide();
-                    $('.smart-submenu').each(function () {
-                        updateArrowDirection($(this), 'right');
-                    });
-                }
-            });
-
-            /**
-             * 阻止子選單內容的事件冒泡
-             * 避免點擊子選單項目時意外關閉選單
-             */
-            $('.submenu-content').on('click', function (e) {
-                e.stopPropagation();
             });
         });
     </script>

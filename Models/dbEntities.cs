@@ -183,51 +183,61 @@ namespace mvcshopping.Models
                 new Category
                 {
                     CategoryId = 1,
+                    CategoryNo = "C001",
                     CategoryName = "電腦周邊"
                 },
                 new Category
                 {
                     CategoryId = 2,
+                    CategoryNo = "C002",
                     CategoryName = "手機周邊"
                 },
                 new Category
                 {
                     CategoryId = 3,
+                    CategoryNo = "C003",
                     CategoryName = "家電"
                 },
                 new Category
                 {
                     CategoryId = 4,
+                    CategoryNo = "C004",
                     CategoryName = "電腦"
                 },
                 new Category
                 {
                     CategoryId = 5,
+                    CategoryNo = "C005",
                     CategoryName = "手機"
                 },
                 new Category
                 {
                     CategoryId = 6,
+                    CategoryNo = "C006",
                     CategoryName = "平板"
                 },
                 new Category
                 {
                     CategoryId = 7,
+                    CategoryNo = "C007",
                     CategoryName = "相機"
                 },
                 new Category
                 {
                     CategoryId = 8,
+                    CategoryNo = "C008",
                     CategoryName = "耳機"
                 },
                 new Category
                 {
                     CategoryId = 9,
+                    CategoryNo = "C009",
                     CategoryName = "音響"
                 },
                 new Category
                 {
                     CategoryId = 10,
+                    CategoryNo = "C010",
                     CategoryName = "電視"
                 }
             );

@@ -1,0 +1,62 @@
+@model mvcshopping.Models.Tables.Category
+
+@* 待解決
+設定資料的方法z_xxx，要研究一下，老師是怎麼寫的，我的程式要怎麼改
+表格中的欄位名稱，應該要與Model中的屬性名稱一致
+"@section ScriptsBody "的功能還要再確認一下是做什麼的 *@
+
+@{
+    string str_command = (Model.CategoryId == 0) ? "新增" : "修改";
+    ViewData["Title"] = $"商品分類資料{str_command}";
+}
+
+<div class="card border-secondary card-size-medium">
+    <div class="card-header bg-secondary text-white">
+        <h5>@ViewData["Title"]</h5>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal mt-2">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CategoryId)
+                <div class="row form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.CategoryNo, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CategoryNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CategoryNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="異動存檔" class="btn btn-primary" />
+                    <a href="@Url.Action("CategoryIndex", "Product" , new {area = ""})" class="btn btn-success" >返回列表</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@* @section ScriptsBody {
+<script type="text/javascript">
+    var deptVal = '';
+    var deptNo = '@Model.DeptNo';
+    if(deptNo!= null && deptNo!= '') { deptVal = deptNo.split(','); }
+    $('#DeptNo').on('loaded.bs.select', function () {
+        $('#DeptNo').selectpicker('val', deptVal);
+    });
+</script>
+} *@

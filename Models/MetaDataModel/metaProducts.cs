@@ -32,4 +32,28 @@ namespace mvcshopping.Models.MetaDataModel
         // public int CategoryId { get; set; }
         // public DateTime? RegistrationDate { get; set; }
     }
+
+    // 商品上傳 ViewModel
+    public class ProductUploadViewModel
+    {
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "商品名稱不能為空")]
+        [Display(Name = "商品名稱")]
+        public string Name { get; set; }
+
+        [Display(Name = "商品描述")]
+        public string Description { get; set; }
+
+        [Required(ErrorMessage = "價格不能為空")]
+        [Display(Name = "價格")]
+        [Range(0, double.MaxValue, ErrorMessage = "價格必須大於0")]
+        public decimal Price { get; set; }
+
+        [Display(Name = "商品圖片")]
+        public IFormFile ImageFile { get; set; }
+
+        [Display(Name = "目前圖片")]
+        public string CurrentImagePath { get; set; }
+    }
 }

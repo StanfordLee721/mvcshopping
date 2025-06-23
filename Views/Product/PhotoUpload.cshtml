@@ -1,0 +1,63 @@
+@model mvcshopping.Models.Tables.Products
+@{
+    ViewData["Title"] = "上傳照片";
+}
+
+<div class="card-header-pills">
+    <div class="card-body p-2">
+        <!-- 顯示產品資訊-->
+        <div class="alert alert-info">
+            <h5>產品資訊</h5>
+            <p><strong>產品編號:</strong> @Model.ProductNo</p>
+            <p><strong>產品名稱:</strong> @Model.ProductName</p>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <p><strong>目前圖片:</strong></p>
+                <img src="@Model.ImageUrl" alt="產品圖片" class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
+            }
+            else
+            {
+                <p><strong>目前圖片:</strong> 尚未上傳</p>
+            }
+        </div>
+        <!-- 上傳表單  -->
+        <form method="post" enctype="multipart/form-data"
+            action="@Url.Action("PhotoUpload", "Product", new { id = Model.ProductId })">
+            <!-- 隱藏欄位傳遞產品 ID  -->
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ProductId)
+
+            <div class="row">
+                <div class="col-md-10">
+                    <label for="file" class="form-label">選擇要上傳的圖片檔案:</label>
+                    <input type="file" id="file" name="file" class="form-control" accept="image/*" required />
+                    <div class="=" form-text">請選擇一張圖片檔案 (jpg, png, gif 等格式)。</div>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">上傳檔案</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- 顯示上傳結果訊息  -->
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success mt-3">
+                @TempData["Message"]
+            </div>
+        }
+        else if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger mt-3">
+                @TempData["Error"]
+            </div>
+        }
+
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ActionLink("返回產品列表", "Index", "Product", new { area = "" }, new { @class = "btn btn-success" })
+            </div>
+        </div>
+    </div>
+</div>

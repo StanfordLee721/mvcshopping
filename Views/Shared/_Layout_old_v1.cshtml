@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - mvcshopping</title>
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/mvcshopping.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">好物商城</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">首頁</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="systemMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">系統功能</a>
+                            <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="systemMenu">
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">購物車管理</a>
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">購物車結帳</a>
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Index">支付整合</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Security">資安管控</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Security">系統設置</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="systemMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">報表與統計</a>
+                            <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="systemMenu">
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">商品資料列印</a>
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="Index">廠商資料列印</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Security">客戶資料列印</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Security">客戶訂單列印</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Home", new { area = "" })">系統設置</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <text>歡迎, @User.Identity.Name</text>
+                                }
+                                else
+                                {
+                                    <text>使用者</text>
+                                }
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="userMenu">
+                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Login">帳號管理</a></li>
+                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Register">會員註冊</a>
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Index">重設密碼</a></li>
+
+                                <hr class="dropdown-divider" />
+                                <li>
+                                    <form method="post" asp-controller="Account" asp-action="Logout" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="dropdown-item">登出系統</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 🔹 主內容區塊開始 -->
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 20px;">
+            <!-- 🔸 Sidebar 區塊開始 -->
+            <div class="col-md-2 col-12 sidebar">
+                <div class="list-group">
+                    <a href="@Url.Action("Index", "Home")" class="list-group-item list-group-item-action">首頁</a>
+                    <a href="@Url.Action("Index", "Product")" class="list-group-item list-group-item-action">商品資料管理</a>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action fw-bold" data-bs-toggle="collapse"
+                            href="#productUpdateMenu" role="button" aria-expanded="false"
+                            aria-controls="productUpdateMenu">
+                            商品資料維護
+                        </a>
+                        <div class="collapse ps-3" id="productUpdateMenu">
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">圖片上傳與存儲</a>
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">商品規格管理</a>
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">庫存管理</a>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <a href="@Url.Action("CategoryIndex", "Product")"
+                            class="list-group-item list-group-item-action">商品分類管理</a>
+
+                        <div class="collapse ps-3" id="ProductCategoryMenu">
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">商品資料列印</a>
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">客戶資料列印</a>
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">廠商資料列印</a>
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">客戶訂單列印</a>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <a href="@Url.Action("Index", "Home")" class="list-group-item list-group-item-action">基本資料管理</a>
+                        <div class="collapse ps-3" id="BasicDataMenu">
+                            <a class="list-group-item list-group-item-action bg-light"
+                                href="/Product/Index">客戶基本資料管理</a>
+                            <a class="list-group-item list-group-item-action bg-light"
+                                href="/Product/Index">廠商基本資料管理</a>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <a href="@Url.Action("Index", "Home")" class="list-group-item list-group-item-action">訂單資料管理</a>
+                        <div class="collapse ps-3" id="OrderDataMenu">
+                            <a class="list-group-item list-group-item-action bg-light"
+                                href="/Product/Index">客戶訂單資料查詢</a>
+                            <a class="list-group-item list-group-item-action bg-light"
+                                href="/Product/Index">客戶訂單資料管理</a>
+                            <a class="list-group-item list-group-item-action bg-light" href="/Product/Index">客戶訂單下載</a>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- 主內容區域 -->
+            <div class="col-md-10 col-12">
+                <div class="content-area mx-auto">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer 區塊 -->
+    <footer class="border-top footer text-dark bg-warning py-1">
+        <div class="container text-center">
+            &copy; 2025 - mvcshopping |
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">隱私權政策</a> |
+            <a asp-area="" asp-controller="Home" asp-action="Contact">聯絡我們</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
